@@ -1,0 +1,19 @@
+[package]
+name = "tokio-chat"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1.19.2", features = ["full", "tracing"] }
+tokio-util = { version = "0.7.10", features = ["full"] }
+tokio-stream = { version = "0.1.14", features = ["full"] }
+parking_lot = { version = "0.12.1" }
+anyhow = { version = "1.0.58" }
+tracing = { version = "0.1.40" }
+tracing-subscriber = { version = "0.3.1", features = ["fmt", "ansi", "env-filter", "tracing-log"] }
+once_cell = { version = "1.19.0" }
+bytes = { version = "1.5.0" }
+futures = { version = "0.3.30" }
+chrono = { version = "0.4.31" }
