@@ -3,13 +3,14 @@ use std::collections::HashMap;
 use std::net::SocketAddr;
 use tokio::sync::mpsc;
 
-pub struct ServerHandle {
+// #[derive(Debug)]
+pub struct Server {
     pub clients: HashMap<SocketAddr, mpsc::UnboundedSender<String>>,
 }
 
-impl ServerHandle {
+impl Server {
     pub fn new() -> Self {
-        ServerHandle {
+        Server {
             clients: HashMap::new(),
         }
     }

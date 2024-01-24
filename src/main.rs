@@ -1,15 +1,17 @@
-mod client_handle;
+mod client;
 mod process;
-mod server_handle;
+mod server;
 mod utils;
 
 use crate::process::process;
-use crate::server_handle::ServerHandle;
+use crate::server::Server;
 use anyhow::Result;
+// use console_subscriber::ConsoleLayer;
 use parking_lot::Mutex;
 use std::sync::Arc;
 use tokio::net::TcpListener;
 use tracing::{error, info};
+use tracing_subscriber::prelude::*;
 
 //TODO
 // add reconnect
@@ -17,13 +19,17 @@ use tracing::{error, info};
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let _ = tracing_subscriber::fmt().init();
+    // tracing_subscriber::registry()
+    //     .with(ConsoleLayer::builder().spawn())
+    //     .init();
 
-    let addr = "0.0.0.0:9595";
+    tracing_subscriber::fmt().init();
+
+    let addr = "127.0.0.1:8888";
     let server = TcpListener::bind(addr).await?;
     info!("Chat server running on {}", &addr);
 
-    let server_handle = Arc::new(Mutex::new(ServerHandle::new()));
+    let server_handle = Arc::new(Mutex::new(Server::new()));
 
     loop {
         let (stream, addr) = server.accept().await?;
