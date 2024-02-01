@@ -1,4 +1,5 @@
-# Simple chat server based on tokio
+# Tcp chat server
+> Based on tokio
 
 ## Run server
 ```shell
